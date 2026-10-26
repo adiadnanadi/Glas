@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="bs">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generator ženskog glasa</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="bg-orbs"><span></span><span></span><span></span></div>
+
+<main class="app">
+  <header class="top">
+    <div class="logo">
+      <div class="logo-icon">
+        <i></i><i></i><i></i><i></i><i></i>
+      </div>
+      <div>
+        <h1>Generator ženskog glasa</h1>
+        <p>Unesi rečenicu i pritisni <kbd>Enter</kbd></p>
+      </div>
+    </div>
+    <div id="status" class="status idle"><span class="dot"></span><span id="statusText">Spreman</span></div>
+  </header>
+
+  <section class="editor">
+    <textarea id="text" spellcheck="true" placeholder="Npr. Zdravo! Ovo je generisan ženski glas za moj školski projekat."></textarea>
+    <div class="meta">
+      <span id="charCount">0 znakova</span>
+      <span id="voiceInfo">glas nije učitan</span>
+    </div>
+
+    <div class="actions">
+      <button id="speakBtn" class="btn primary">
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+        Izgovori
+      </button>
+      <button id="stopBtn" class="btn ghost" disabled>
+        <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M6 6h12v12H6z"/></svg>
+        Zaustavi
+      </button>
+      <button id="clearBtn" class="btn ghost">Obriši</button>
+      <div class="spacer"></div>
+      <button id="downloadBtn" class="btn ghost" disabled>Preuzmi MP3</button>
+      <button id="copyBtn" class="btn ghost">Kopiraj</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="row" id="langRow">
+      <label for="lang">Jezik / akcenat</label>
+      <select id="lang">
+        <option value="bs" selected>Bosanski (bs-BA)</option>
+        <option value="hr">Hrvatski (hr-HR)</option>
+        <option value="sr">Srpski (sr-RS)</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label for="voice">Glas</label>
+      <select id="voice">
+        <option>Učitavam glasove…</option>
+      </select>
+      <span id="engine" class="badge">…</span>
+    </div>
+    <p class="hint" id="voiceHint"><b>Ava</b> (podrazumijevano) je Microsoftov razgovorni neuralni glas — zvuči najljudskije. <b>Emma</b> je vedriji, a <b>Domaći</b> (Vesna/Gabrijela/Sophie) ima 100% lokalni izgovor. Usporedi ih klikom na isti primjer, pa izaberi koji ti najviše odgovara.</p>
+
+    <div class="sliders">
+      <div class="slider">
+        <label for="rate">Brzina <b id="rateVal">+0%</b></label>
+        <input type="range" id="rate" min="-30" max="50" step="5" value="0" />
+      </div>
+      <div class="slider">
+        <label for="pitch">Visina tona <b id="pitchVal">+0 Hz</b></label>
+        <input type="range" id="pitch" min="-20" max="30" step="2" value="0" />
+      </div>
+      <div class="slider">
+        <label for="volume">Jačina <b id="volumeVal">100%</b></label>
+        <input type="range" id="volume" min="0" max="1" step="0.05" value="1" />
+      </div>
+    </div>
+
+    <div class="chips" id="quick"></div>
+  </section>
+
+  <section class="panel history-wrap">
+    <div class="row head">
+      <label>Izgovoreno</label>
+      <button id="clearHistory" class="mini">obriši listu</button>
+    </div>
+    <ul id="history" class="history"><li class="empty">Još nema izgovorenih rečenica.</li></ul>
+  </section>
+
+  <footer class="foot">
+    <span id="engineInfo">Spajam se na server…</span>
+    <span>Web Speech API · lokalni server · školski projekat</span>
+  </footer>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
